@@ -1,32 +1,71 @@
 import 'dart:io';
 
+var qualquerCoisa = [];
 void main(List<String> arguments) {
-  print('Digite um número: ');
-  var num1 = int.parse(stdin.readLineSync()!);
 
-  print('Digite outro número: ');
-  var num2 = int.parse(stdin.readLineSync()!);
+  int opcao;
 
-  if (num1 > num2) {
-    print('O primeiro valor: $num1 é maior que o segundo valor: $num2');
-  } else if (num1 < num2) {
-    print('O segundo valor: $num2 é maior que o primeiro valor: $num1');
-  } else {
-    print('Os dois valores são iguais!');
-  }
+  do {
+    opcao = opcoes();
 
-  print('Digite a quantidade de vezes que deseja checar se um número é par ou impar: ');
-  var x = int.parse(stdin.readLineSync()!);
-
-  for (var i = 0; i < x; i++) {
-    print('Digite um número para ser checado: ');
-    var n = int.parse(stdin.readLineSync()!);
-
-    if (n % 2 == 0) {
-      print('O número é par');
-    } else {
-      print('O número é impar');
+    if (opcao == 0) {
+      return;
     }
+
+    switch(opcao) {
+      case 1: {
+        adicionar();
+      }
+      break;
+
+      case 2: {
+        verTodos();
+      }
+      break;
+      case 3: {
+        remover();
+      }
+      break;
+      default: {
+        print('Opção Inválida');
+      }
+    }        
+  } while(opcao != 0);
+
+}
+
+int opcoes() {
+  print('(1) Adicionar um valor');
+  print('(2) Ver todos os valores');
+  print('(3) Remover um valor');
+  print('(0) Sair');
+  
+  print('Escolha a opção');
+
+  return int.parse(stdin.readLineSync()!);
+}
+
+void adicionar() {
+  print('Digite qualquer coisa: ');
+    dynamic algo = stdin.readLineSync()!;
+
+    qualquerCoisa.add(algo);
+}
+
+void verTodos() {
+  for (var a in qualquerCoisa) {
+    print(a);
+  }
+}
+
+void remover() {
+  for (var i = 0; i < qualquerCoisa.length; i++) {
+    print('Id: $i');
+    print('Valor: ${qualquerCoisa[i]} \n');
   }
 
+  print('Digite o id do valor que deseja remover: ');
+  var id = int.parse(stdin.readLineSync()!);
+
+  qualquerCoisa.removeAt(id);
 }
