@@ -1,16 +1,14 @@
 //@dart=2.9
 
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:teste/app/app.dart';
-import 'package:teste/app/dataBase/connection.dart';
+import 'package:teste/app/dataBase/daos/productDaoImpl.dart';
+import 'package:teste/app/domain/entities/product.dart';
 
 class productList extends StatelessWidget {
 
-  Future<List<Map<String, dynamic>>> _buscarProdutos() async {
-    Database db = await Connection.get();
-
-    return db.query('produto');
+  Future<List<Product>> _buscarProdutos() async {
+    return ProductDAOImpl().find();
   }
 
   @override
@@ -20,7 +18,7 @@ class productList extends StatelessWidget {
       future: _buscarProdutos(),  
       builder: (context, futuro) {
         if (futuro.hasData) {
-          var produtos = futuro.data;
+          List<Product> produtos = futuro.data;
 
           return Scaffold(
             appBar: AppBar(
@@ -40,8 +38,8 @@ class productList extends StatelessWidget {
                 var produto = produtos[i];
 
                 return ListTile(
-                  title: Text('Descrição: ' + produto['descricao']),
-                  subtitle: Text('Quantidade: ' + produto['quantidade'].toString()),
+                  title: Text('Descrição: ' + produto.descricao),
+                  subtitle: Text('Quantidade: ' + produto.quantidade.toString()),
                 );
               },
             )
