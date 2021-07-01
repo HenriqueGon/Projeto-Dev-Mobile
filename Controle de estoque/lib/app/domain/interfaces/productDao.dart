@@ -1,4 +1,3 @@
-
 import 'package:teste/app/domain/entities/product.dart';
 
 abstract class ProductDAO {
@@ -8,5 +7,4 @@ abstract class ProductDAO {
   remove(int id);
 
   Future<List<Product>> find();
-
 }
