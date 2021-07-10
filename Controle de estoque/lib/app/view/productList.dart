@@ -1,54 +1,115 @@
 //@dart=2.9
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:teste/app/app.dart';
-import 'package:teste/app/dataBase/daos/productDaoImpl.dart';
 import 'package:teste/app/domain/entities/product.dart';
+import 'package:teste/app/view/productListBack.dart';
 
 class productList extends StatelessWidget {
 
-  Future<List<Product>> _buscarProdutos() async {
-    return ProductDAOImpl().find();
+  final _back = ProductListBack();
+
+  Widget iconEditButton(Function onPressed) {
+    return IconButton(
+      onPressed: onPressed, 
+      color: Colors.blue, 
+      icon: Icon(Icons.edit)
+    );
+  }
+
+  Widget iconPadlockButton(Function onPressed) {
+    return IconButton(
+      onPressed: onPressed, 
+      color: Colors.purple, 
+      icon: Icon(Icons.lock)
+    );
+  }
+
+  Widget iconRemoveButton(BuildContext context, Function remove) {
+    return IconButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Excluir'),
+            content: Text('Confirma a exclusão?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }, 
+                child: Text('Cancelar')
+              ),
+              TextButton(
+                onPressed: remove, 
+                child: Text('Confirmar')
+              ),
+            ],
+          )
+        );
+      }, 
+      icon: Icon(Icons.delete),
+      color: Colors.red,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
 
-    return FutureBuilder(
-      future: _buscarProdutos(),  
-      builder: (context, futuro) {
-        if (futuro.hasData) {
-          List<Product> produtos = futuro.data;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lista de Produtos'),
+        actions: [
+          IconButton(
+            onPressed: () => {
+              Navigator.of(context).pushNamed(MyApp.NEWPRODUCT),
+            }, 
+            icon: Icon(Icons.add)
+          ),
+        ],
+      ),
+      body: Observer(builder: (context){
+        return FutureBuilder(
+        future: _back.list,  
+        builder: (context, futuro) {
+          if (!futuro.hasData) {
+            return CircularProgressIndicator();
+          } else {
+            List<Product> produtos = futuro.data;
 
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Lista de Produtos'),
-              actions: [
-                IconButton(
-                  onPressed: () => {
-                    Navigator.of(context).pushNamed(MyApp.NEWPRODUCT),
-                  }, 
-                  icon: Icon(Icons.add)
-                ),
-              ],
-            ),
-            body: ListView.builder(
+            return ListView.builder(
               itemCount: produtos.length,
               itemBuilder: (context, i) {
                 var produto = produtos[i];
 
                 return ListTile(
-                  title: Text('Descrição: ' + produto.descricao),
+                  title: Text('Nome: ' + produto.nome),
                   subtitle: Text('Quantidade: ' + produto.quantidade.toString()),
+                  trailing: Container(
+                    width: 150,
+                    child: Row(
+                      children: [
+                        iconPadlockButton(() {
+                          _back.goToForm(context, produto);
+                        }),
+                        iconEditButton((){
+                          _back.goToForm(context, produto);
+                        }),
+                        iconRemoveButton(context, () {
+                          _back.remove(produto.id);
+
+                          Navigator.of(context).pop();
+                        }),
+                      ],
+                    )
+                  ),
                 );
               },
-            )
-          );
-        } else {
-          return Scaffold();
-        }
-      },
+            );
+          }
+        });
+      })
     );
-    
   }
 }

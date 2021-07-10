@@ -9,6 +9,8 @@ class Connection {
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'controle_estoque');
 
+      // deleteDatabase(path);
+      
       _db = await openDatabase(
         path,
         version: 1,

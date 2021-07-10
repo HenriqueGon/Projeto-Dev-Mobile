@@ -21,6 +21,7 @@ class ProductDAOImpl implements ProductDAO{
 
       return Product(
         id: row['id'],
+        nome: row['nome'],
         descricao: row['descricao'],
         quantidade: row['quantidade']
       );
@@ -45,16 +46,17 @@ class ProductDAOImpl implements ProductDAO{
     var sql;
 
     if (product.id == null) {
-      sql = 'INSERT INTO produto (descricao, quantidade) VALUES (?, ?)';
+      sql = 'INSERT INTO produto (nome, descricao, quantidade) VALUES (?, ?, ?)';
 
-      db.rawInsert(sql, [product.descricao, product.quantidade]);
+      db.rawInsert(sql, [product.nome, product.descricao, product.quantidade]);
     } else {
-      sql = '''UPDATE produto SET 
-        descricao = ?
+      sql = '''UPDATE produto SET
+        nome = ? 
+        ,descricao = ?
         ,quantidade = ?
       ''';
 
-      db.rawUpdate(sql, [product.descricao, product.quantidade]);
+      db.rawUpdate(sql, [product.nome, product.descricao, product.quantidade]);
     }
   }
 

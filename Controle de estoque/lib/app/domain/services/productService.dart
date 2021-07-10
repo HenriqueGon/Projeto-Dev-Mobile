@@ -8,6 +8,7 @@ class ProductService {
   var _dao = GetIt.I.get<ProductDAO>();
 
   save(Product product) {
+    validateName(product.nome);
     validateDescription(product.descricao);
     validateQuantity(product.quantidade);
 
@@ -22,15 +23,20 @@ class ProductService {
     return _dao.find();
   }
 
-  validateDescription(String description) {
-    var min = 3;
-    var max = 255;
+  validateName(String name) {
+    var max = 50;
 
-    if (description == null) {
-      throw new domainLayerException('A descrição é obrigatório.');
-    } else if (description.length < min) {
-      throw new domainLayerException('A descrição deve possuir ao menos $min caracteres.');
-    } else if (description.length > max) {
+    if (name == null) {
+      throw new domainLayerException('O nome é obrigatório.');
+    } else if (name.length > max) {
+      throw new domainLayerException('A descrição deve possuir no máximo $max caracteres.');
+    }
+  }
+   
+  validateDescription(String description) {
+    var max = 255;
+    
+    if (description.length > max) {
       throw new domainLayerException('A descrição deve possuir no máximo $max caracteres.');
     }
   }
@@ -39,5 +45,6 @@ class ProductService {
     if (quantity == null) {
       throw new domainLayerException('A quantidade é obrigatório.');
     }
-  } 
+  }
+
 }

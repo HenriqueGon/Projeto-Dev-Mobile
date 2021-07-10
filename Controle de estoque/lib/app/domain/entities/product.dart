@@ -2,8 +2,9 @@
 
 class Product {
   int id;
+  String nome;
   String descricao;
   int quantidade;
 
-  Product({this.id, this.descricao, this.quantidade});
+  Product({this.id, this.nome, this.descricao, this.quantidade});
 }
