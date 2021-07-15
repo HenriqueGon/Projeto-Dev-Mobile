@@ -1,8 +1,8 @@
 
-class domainLayerException implements Exception {
+class DomainLayerException implements Exception {
   String cause;
 
-  domainLayerException(this.cause);
+  DomainLayerException(this.cause);
   
   @override
   String toString() {

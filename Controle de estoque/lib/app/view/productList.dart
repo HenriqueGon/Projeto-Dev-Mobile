@@ -6,7 +6,7 @@ import 'package:teste/app/app.dart';
 import 'package:teste/app/domain/entities/product.dart';
 import 'package:teste/app/view/productListBack.dart';
 
-class productList extends StatelessWidget {
+class ProductList extends StatelessWidget {
 
   final _back = ProductListBack();
 
@@ -15,14 +15,6 @@ class productList extends StatelessWidget {
       onPressed: onPressed, 
       color: Colors.blue, 
       icon: Icon(Icons.edit)
-    );
-  }
-
-  Widget iconPadlockButton(Function onPressed) {
-    return IconButton(
-      onPressed: onPressed, 
-      color: Colors.purple, 
-      icon: Icon(Icons.lock)
     );
   }
 
@@ -87,12 +79,9 @@ class productList extends StatelessWidget {
                   title: Text('Nome: ' + produto.nome),
                   subtitle: Text('Quantidade: ' + produto.quantidade.toString()),
                   trailing: Container(
-                    width: 150,
+                    width: 100,
                     child: Row(
                       children: [
-                        iconPadlockButton(() {
-                          _back.goToForm(context, produto);
-                        }),
                         iconEditButton((){
                           _back.goToForm(context, produto);
                         }),

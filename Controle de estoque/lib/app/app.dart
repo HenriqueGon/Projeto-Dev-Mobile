@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teste/app/view/productForm.dart';
-import 'package:teste/app/view/productList.dart';
+import 'package:teste/app/view/ProductForm.dart';
+import 'package:teste/app/view/ProductList.dart';
 
 class MyApp extends StatelessWidget {
   static const HOME = '/';
@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        HOME: (context) => productList(),
-        NEWPRODUCT: (context) => productForm(),
+        HOME: (context) => ProductList(),
+        NEWPRODUCT: (context) => ProductForm(),
       },
     );
   }
