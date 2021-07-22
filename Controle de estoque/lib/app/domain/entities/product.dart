@@ -4,7 +4,7 @@ class Product {
   int id;
   String nome;
   String descricao;
-  int quantidade;
+  String quantidade;
 
   Product({this.id, this.nome, this.descricao, this.quantidade});
 }

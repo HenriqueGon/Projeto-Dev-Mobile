@@ -1,8 +1,8 @@
 //@dart=2.9
 
 import 'package:sqflite/sqflite.dart';
-import 'package:teste/app/domain/entities/product.dart';
-import 'package:teste/app/domain/interfaces/productDao.dart';
+import 'package:MyStock/app/domain/entities/product.dart';
+import 'package:MyStock/app/domain/interfaces/productDao.dart';
 
 import '../connection.dart';
 

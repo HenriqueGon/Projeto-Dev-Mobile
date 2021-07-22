@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:teste/app/app.dart';
-import 'package:teste/app/domain/entities/product.dart';
-import 'package:teste/app/view/productListBack.dart';
+import 'package:MyStock/app/app.dart';
+import 'package:MyStock/app/domain/entities/product.dart';
+import 'package:MyStock/app/view/product/productListBack.dart';
 
 class ProductList extends StatelessWidget {
 
@@ -48,14 +48,13 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de Produtos'),
         actions: [
           IconButton(
             onPressed: () => {
-              Navigator.of(context).pushNamed(MyApp.NEWPRODUCT),
+              _back.goToForm(context),
             }, 
             icon: Icon(Icons.add)
           ),
@@ -77,7 +76,7 @@ class ProductList extends StatelessWidget {
 
                 return ListTile(
                   title: Text('Nome: ' + produto.nome),
-                  subtitle: Text('Quantidade: ' + produto.quantidade.toString()),
+                  subtitle: Text('Quantidade: ' + produto.quantidade),
                   trailing: Container(
                     width: 100,
                     child: Row(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teste/app/view/ProductForm.dart';
-import 'package:teste/app/view/ProductList.dart';
+import 'package:MyStock/app/view/adjustment/stockAdjustment.dart';
+import 'package:MyStock/app/view/product/productForm.dart';
+import 'package:MyStock/app/view/product/productList.dart';
 
 class MyApp extends StatelessWidget {
   static const HOME = '/';
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MyStock',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

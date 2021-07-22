@@ -1,6 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:teste/app/dataBase/scripts/scriptsProduct.dart';
+import 'package:MyStock/app/dataBase/scripts/scriptsProduct.dart';
 
 class Connection {
   static Database? _db;

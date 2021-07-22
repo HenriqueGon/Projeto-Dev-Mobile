@@ -1,8 +1,8 @@
 
 import 'package:get_it/get_it.dart';
-import 'package:teste/app/dataBase/daos/productDaoImpl.dart';
-import 'package:teste/app/domain/interfaces/productDao.dart';
-import 'package:teste/app/domain/services/productService.dart';
+import 'package:MyStock/app/dataBase/daos/productDaoImpl.dart';
+import 'package:MyStock/app/domain/interfaces/productDao.dart';
+import 'package:MyStock/app/domain/services/productService.dart';
 
 setupInjection() {
   GetIt getIt = GetIt.I;

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teste/app/view/productFormBack.dart';
+import 'package:MyStock/app/view/product/productFormBack.dart';
 
-class ProductForm extends StatelessWidget {
-
+class StockAdjustment extends StatelessWidget {
   Widget fieldName(ProductFormBack back) {
     return TextFormField(
       initialValue: back.product.nome,
@@ -14,19 +13,10 @@ class ProductForm extends StatelessWidget {
 
   Widget fieldQuantity(ProductFormBack back) {
     return TextFormField(
-      initialValue: (back.product.quantidade == null) ? '0' : back.product.quantidade.toString(),
+      initialValue: back.product.quantidade,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: 'Quantidade',
-      ),
-    );
-  }
-
-  Widget fieldDescription(ProductFormBack back) {
-    return TextFormField(
-      initialValue: back.product.descricao,
-      decoration: InputDecoration(
-        labelText: 'Descrição',
       ),
     );
   }
@@ -37,7 +27,7 @@ class ProductForm extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Produtos'),
+        title: Text('Ajuste de Estoque'),
         actions: [
           IconButton(onPressed: null, icon: Icon(Icons.save)),
         ],
@@ -49,7 +39,6 @@ class ProductForm extends StatelessWidget {
             children: [
               fieldName(_back),
               fieldQuantity(_back),
-              fieldDescription(_back),
             ],
           ),
         ),

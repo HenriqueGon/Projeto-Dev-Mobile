@@ -2,9 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:teste/app/app.dart';
-import 'package:teste/app/domain/entities/product.dart';
-import 'package:teste/app/domain/services/productService.dart';
+import 'package:MyStock/app/app.dart';
+import 'package:MyStock/app/domain/entities/product.dart';
+import 'package:MyStock/app/domain/services/productService.dart';
 
 part 'productListBack.g.dart'; 
 

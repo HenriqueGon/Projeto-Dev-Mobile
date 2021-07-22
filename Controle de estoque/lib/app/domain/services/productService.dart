@@ -1,8 +1,8 @@
 //@dart=2.9
 import 'package:get_it/get_it.dart';
-import 'package:teste/app/domain/entities/product.dart';
-import 'package:teste/app/domain/exception/DomainLayerException.dart';
-import 'package:teste/app/domain/interfaces/productDao.dart';
+import 'package:MyStock/app/domain/entities/product.dart';
+import 'package:MyStock/app/domain/exception/DomainLayerException.dart';
+import 'package:MyStock/app/domain/interfaces/productDao.dart';
 
 class ProductService {
   var _dao = GetIt.I.get<ProductDAO>();
@@ -26,7 +26,7 @@ class ProductService {
   validateName(String name) {
     var max = 50;
 
-    if (name == null) {
+    if (name.length == 0) {
       throw new DomainLayerException('O nome é obrigatório.');
     } else if (name.length > max) {
       throw new DomainLayerException('A descrição deve possuir no máximo $max caracteres.');
@@ -41,8 +41,8 @@ class ProductService {
     }
   }
 
-  validateQuantity(int quantity) {
-    if (quantity == null) {
+  validateQuantity(String quantity) {
+    if (quantity.length == 0) {
       throw new DomainLayerException('A quantidade é obrigatório.');
     }
   }
