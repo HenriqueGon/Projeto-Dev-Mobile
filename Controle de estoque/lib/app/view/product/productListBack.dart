@@ -26,7 +26,11 @@ abstract class _ProductListBack with Store {
   }
 
   goToForm(BuildContext context, [Product product]) {
-    Navigator.of(context).pushNamed(MyApp.NEWPRODUCT, arguments: product).then(refreshList);
+    Navigator.of(context).pushNamed(MyApp.NEW_PRODUCT, arguments: product).then(refreshList);
+  }
+
+  goToDetails(BuildContext context, Product produto) {
+    Navigator.of(context).pushNamed(MyApp.PRODUCT_DETAILS, arguments: produto);
   }
 
   remove(int id) {

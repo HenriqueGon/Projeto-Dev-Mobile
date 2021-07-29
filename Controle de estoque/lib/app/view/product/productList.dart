@@ -77,6 +77,9 @@ class ProductList extends StatelessWidget {
                 return ListTile(
                   title: Text('Nome: ' + produto.nome),
                   subtitle: Text('Quantidade: ' + produto.quantidade),
+                  onTap: () {
+                    _back.goToDetails(context, produto);
+                  },
                   trailing: Container(
                     width: 100,
                     child: Row(

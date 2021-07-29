@@ -54,9 +54,10 @@ class ProductDAOImpl implements ProductDAO{
         nome = ? 
         ,descricao = ?
         ,quantidade = ?
+        WHERE id = ?
       ''';
 
-      db.rawUpdate(sql, [product.nome, product.descricao, product.quantidade]);
+      db.rawUpdate(sql, [product.nome, product.descricao, product.quantidade, product.id]);
     }
   }
 

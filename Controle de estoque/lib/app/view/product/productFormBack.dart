@@ -3,14 +3,9 @@
 import 'package:MyStock/app/domain/services/productService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 import 'package:MyStock/app/domain/entities/product.dart';
 
-part 'productFormBack.g.dart';
-
-class ProductFormBack = _ProductFormBack with _$ProductFormBack;
-
-abstract class _ProductFormBack with Store {
+class ProductFormBack {
   Product product;
 
   var _service = GetIt.I.get<ProductService>();
@@ -19,13 +14,12 @@ abstract class _ProductFormBack with Store {
   bool _quantityIsValid;
   bool _descriptionIsValid;
   
-  _ProductFormBack(BuildContext context) {
+  ProductFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context).settings.arguments;
 
     product = (parameter == null) ? Product() : parameter;
   }
 
-  @action
   bool get isValid => _nameIsValid && _quantityIsValid && _descriptionIsValid;
   
   save() async {
