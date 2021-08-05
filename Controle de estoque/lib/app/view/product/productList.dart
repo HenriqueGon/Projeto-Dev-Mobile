@@ -2,13 +2,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:MyStock/app/app.dart';
 import 'package:MyStock/app/domain/entities/product.dart';
 import 'package:MyStock/app/view/product/productListBack.dart';
 
 class ProductList extends StatelessWidget {
 
   final _back = ProductListBack();
+
+  showModalError(BuildContext context) {
+    var alert = AlertDialog(
+      title: Text('Atenção!'),
+      content: Text('Não foi possível encontrar um aplicativo compatível!'),
+    );
+
+    showDialog(
+      context: context, 
+      builder: (BuildContext context) {
+        return alert;
+      }
+    );
+  }
 
   Widget iconEditButton(Function onPressed) {
     return IconButton(
@@ -100,7 +113,13 @@ class ProductList extends StatelessWidget {
             );
           }
         });
-      })
+      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _back.launchEmail(showModalError);
+        },
+        child: Icon(Icons.email),
+      ),
     );
   }
 }
