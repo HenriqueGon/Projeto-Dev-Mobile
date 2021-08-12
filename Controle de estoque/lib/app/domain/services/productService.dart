@@ -15,7 +15,7 @@ class ProductService {
     _dao.save(product);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     _dao.remove(id);
   }
 

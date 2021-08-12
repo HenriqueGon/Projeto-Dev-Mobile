@@ -1,7 +1,7 @@
 //@dart=2.9
 
 class Product {
-  int id;
+  dynamic id;
   String nome;
   String descricao;
   String quantidade;

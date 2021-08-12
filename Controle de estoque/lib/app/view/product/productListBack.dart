@@ -36,7 +36,7 @@ abstract class _ProductListBack with Store {
     Navigator.of(context).pushNamed(MyApp.PRODUCT_DETAILS, arguments: product);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     _service.remove(id);
 
     refreshList();

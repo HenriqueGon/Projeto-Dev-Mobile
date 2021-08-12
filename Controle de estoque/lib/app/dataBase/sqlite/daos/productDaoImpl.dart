@@ -1,10 +1,9 @@
 //@dart=2.9
 
+import 'package:MyStock/app/dataBase/connection.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:MyStock/app/domain/entities/product.dart';
 import 'package:MyStock/app/domain/interfaces/productDao.dart';
-
-import '../connection.dart';
 
 class ProductDAOImpl implements ProductDAO{
 
@@ -31,7 +30,7 @@ class ProductDAOImpl implements ProductDAO{
   }
 
   @override
-  remove(int id) async {
+  remove(dynamic id) async {
     db = await Connection.get();
 
     var sql = 'DELETE FROM produto WHERE id = ?';

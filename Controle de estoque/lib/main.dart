@@ -4,7 +4,7 @@ import 'package:MyStock/app/injection.dart';
 
 import 'app/app.dart';
 
-void main() {
-  setupInjection();
+void main() async {
+  await setupInjection();
   runApp(MyApp());
 }
