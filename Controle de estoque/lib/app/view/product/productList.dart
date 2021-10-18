@@ -101,9 +101,7 @@ class ProductList extends StatelessWidget {
                           _back.goToForm(context, produto);
                         }),
                         iconRemoveButton(context, () {
-                          _back.remove(produto.id);
-
-                          Navigator.of(context).pop();
+                          _back.remove(context, produto.id);
                         }),
                       ],
                     )

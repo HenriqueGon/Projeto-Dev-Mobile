@@ -36,10 +36,12 @@ abstract class _ProductListBack with Store {
     Navigator.of(context).pushNamed(MyApp.PRODUCT_DETAILS, arguments: product);
   }
 
-  remove(dynamic id) {
-    _service.remove(id);
+  remove(BuildContext context, dynamic id) async {
+    await _service.remove(id);
 
     refreshList();
+
+    Navigator.of(context).pop();
   }
 
   _launchApp(String url, Function(BuildContext context) modalError) async {

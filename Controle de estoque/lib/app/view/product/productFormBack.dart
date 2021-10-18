@@ -22,8 +22,10 @@ class ProductFormBack {
 
   bool get isValid => _nameIsValid && _quantityIsValid && _descriptionIsValid;
   
-  save() async {
+  save(BuildContext context) async {
     await _service.save(product);
+
+    Navigator.of(context).pop();
   }
 
   String validateName(String name) {

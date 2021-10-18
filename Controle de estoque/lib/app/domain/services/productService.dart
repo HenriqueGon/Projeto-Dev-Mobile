@@ -7,16 +7,16 @@ import 'package:MyStock/app/domain/interfaces/productDao.dart';
 class ProductService {
   var _dao = GetIt.I.get<ProductDAO>();
 
-  save(Product product) {
+  save(Product product) async {
     validateName(product.nome);
     validateDescription(product.descricao);
     validateQuantity(product.quantidade);
 
-    _dao.save(product);
+    await _dao.save(product);
   }
 
-  remove(dynamic id) {
-    _dao.remove(id);
+  remove(dynamic id) async {
+    await _dao.remove(id);
   }
 
   Future<List<Product>> find() {
